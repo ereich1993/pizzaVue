@@ -1,5 +1,8 @@
 <template>
-    $END$
+    <b-container class="contain" >
+
+
+    </b-container>
 </template>
 
 <script>
@@ -9,5 +12,7 @@
 </script>
 
 <style scoped>
-
+   .contain {
+       background-color: #0019ff;
+   }
 </style>
