@@ -3,6 +3,7 @@
         <h3>Sign In</h3>
         <input type="text" v-model="email" placeholder="Email"><br>
         <input type="password" v-model="password" placeholder="password"><br>
+        <span v-if="loginFailed==true">Incorrect credentials</span><br>
         <button @click="login">Connection</button>
         <p>You don't have an account ? You can <router-link to="/signUp">create one</router-link></p>
     </div>
@@ -10,18 +11,33 @@
 
 <script>
     import store from "../store"
+    import {restGet,restPost} from "../RestClient/consumer"
+import { async } from 'q';
     export default {
         name: "Login",
         data() {
             return {
                 email:"",
-                password:""
+                password:"",
+                loginFailed :"initial"
             };
         },
         methods: {
-            login: function() {
-                store.commit('login',this.email);
-                this.$router.push("/home")
+            login: async function() {
+                var model = {
+                    username:this.email,
+                    password:this.password
+                }
+                const response = await restPost("Users",model)
+                if (response){
+                    store.commit('login',response.username);
+                    this.$router.push("/home")
+                }
+                else {
+                    this.loginFailed = true;
+                }
+                
+
             }
         }
     }
@@ -49,5 +65,10 @@
     p a {
         text-decoration: underline;
         cursor: pointer;
+    }
+
+    span {
+        color: red
+        
     }
 </style>

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
+import { stat } from 'fs';
 
 Vue.use(Vuex);
 const vuexLocal = new VuexPersistence({
@@ -21,7 +22,9 @@ export default new Vuex.Store({
     },
     logout (state){
       state.email = "";
+      state.cart = [];
       state.isLogged = false
+      
     },
     addToCart (state, value){
       state.cart.push(value);

@@ -39,6 +39,8 @@
     import store from "../store"
     import About from "./About"
     import ProductCard from "../components/ProductCard";
+    import {restPost} from "../RestClient/consumer"
+import { async } from 'q';
     export default {
         mounted () {
 
@@ -70,8 +72,12 @@
             }
         },
         methods: {
-            clear: function () {
-                store.commit('clearCart');
+            clear: async function () {
+                var myCart = JSON.parse(JSON.stringify(this.items))
+                if (myCart.length>0){
+                    const resposne = await restPost("Product",myCart)
+                }
+                //store.commit('clearCart');
             }
         }
     }

@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PizzaVueBackend.Data;
+using PizzaVueBackend.Dtos;
+using PizzaVueBackend.Models;
 
 namespace PizzaVueBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class UsersController : ControllerBase
     {
+        private readonly PizzaBackendDbContext ctx;
+
+        public UsersController(PizzaBackendDbContext ctx)
+        {
+            this.ctx = ctx;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -26,8 +35,20 @@ namespace PizzaVueBackend.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] LoginDto value)
         {
+            
+            var Customer = ctx.Users.FirstOrDefault(e => e.UserName == value.username && e.Password == value.password);
+            if (Customer!=null)
+            {
+                return Ok(value);
+            }
+            else
+            {
+                return Ok(false);
+            }
+            
+
         }
 
         // PUT api/values/5

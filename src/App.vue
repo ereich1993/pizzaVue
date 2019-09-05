@@ -33,8 +33,8 @@
               <!-- Right aligned nav items -->
               <b-navbar-nav>
                   <b-nav-item  ><img src="./assets/Vapiano-Logo-650x315.jpg" style="height: 30px;padding-bottom:8px; "></b-nav-item>
-                  <b-nav-item style="margin-left: 320%" ><router-link class="navbaritemBlack" to="/login">Bejelentkezés</router-link></b-nav-item>
-                  <b-nav-item ><router-link class="navbaritemBlack" to="/signUp">Regisztráció</router-link></b-nav-item>
+                 <!-- <b-nav-item style="margin-left: 320%" ><router-link class="navbaritemBlack" to="/login">Bejelentkezés</router-link></b-nav-item>
+                  <b-nav-item ><router-link class="navbaritemBlack" to="/signUp">Regisztráció</router-link></b-nav-item> -->
               </b-navbar-nav>
           </b-collapse>
       </b-navbar>
