@@ -22,10 +22,12 @@ namespace PizzaVueBackend
             _logger = logger;
             _appLifetime = appLifetime;
         }
+        
 
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
+
             _appLifetime.ApplicationStarted.Register(OnStarted);
             _appLifetime.ApplicationStopping.Register(OnStopping);
             _appLifetime.ApplicationStopped.Register(OnStopped);

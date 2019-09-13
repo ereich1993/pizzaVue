@@ -33,5 +33,13 @@ namespace PizzaVueBackend.Controllers
             }
 
         }
+
+
+        [HttpGet("GetDailyRevenue")]
+        public async Task<IActionResult> GetDailyRevenue ()
+        {
+            var revenue = 500;
+            return Ok(revenue);
+        }
     }
 }

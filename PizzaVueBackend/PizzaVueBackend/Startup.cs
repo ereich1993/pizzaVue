@@ -33,8 +33,9 @@ namespace PizzaVueBackend
         {
             services.AddCors();
             string connectionString = Configuration["ConnectionString"];
-            services.AddDbContext<PizzaBackendDbContext>(options => options.UseSqlServer(connectionString));
             services.AddHostedService<LifetimeEventsHostedService>();
+            services.AddDbContext<PizzaBackendDbContext>(options => options.UseSqlServer(connectionString));
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
